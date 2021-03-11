@@ -1,0 +1,39 @@
+networks:
+  dockerplanetariodev:
+    driver: bridge
+services:
+  agendamentoplanetario:
+    build:
+      context: C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack
+      dockerfile: AgendamentoPlanetario\Dockerfile
+    depends_on:
+      postgresdb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DefaultConnection: Server=postgresdb;port=5432;user id=postgres;password=gremio10;database=planetario;Timeout=120;CommandTimeout=480;
+    image: agendamentoplanetario
+    networks:
+      dockerplanetariodev: {}
+    ports:
+    - published: 8000
+      target: 80
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\phvro\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\phvro\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  postgresdb:
+    environment:
+      POSTGRES_DB: planetario
+      POSTGRES_PASSWORD: gremio10
+      POSTGRES_USER: postgres
+    image: postgres:latest
+    networks:
+      dockerplanetariodev: {}
+    ports:
+    - published: 5432
+      target: 5432
+    restart: always
+version: '3.4'

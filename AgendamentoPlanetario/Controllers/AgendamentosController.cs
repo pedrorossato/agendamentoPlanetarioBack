@@ -25,7 +25,15 @@ namespace AgendamentoPlanetario.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Agendamento>>> GetAgendamentos()
         {
-            return await _context.Agendamentos.ToListAsync();
+            try
+            {
+                return await _context.Agendamentos.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         // GET: Agendamentos/5

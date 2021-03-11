@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CYF7wqTmacFhbIILm+mgscsFruusVdrjYMtrzQjX9VfAcaJVRK1/NWmkyDb3rsZ/3jSRphquYHjWHnozb/kX2w==",
+  "dgSpecHash": "nO5JfzYrnSNiXF4a6GtdAFn3zoFHjVTGIN9KAIgR7OxMgCMv/AIb3DI13nL5M0jNj8CFwuXljGRJ6PO/8d82vw==",
   "success": true,
   "projectFilePath": "C:\\Users\\phvro\\Documents\\GitHub\\AgendamentoPlanetario\\agendamentoPlanetarioBack\\AgendamentoPlanetario\\AgendamentoPlanetario.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,7 @@
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.5.0\\microsoft.identitymodel.tokens.5.5.0.nupkg.sha512",
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\phvro\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512",
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\3.1.5\\microsoft.visualstudio.web.codegeneration.3.1.5.nupkg.sha512",
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.contracts\\3.1.5\\microsoft.visualstudio.web.codegeneration.contracts.3.1.5.nupkg.sha512",
     "C:\\Users\\phvro\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\3.1.5\\microsoft.visualstudio.web.codegeneration.core.3.1.5.nupkg.sha512",

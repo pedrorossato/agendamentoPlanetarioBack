@@ -1,3 +1,5 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
 FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
 WORKDIR /app
 EXPOSE 80
@@ -5,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["AgendamentoPlanetario.csproj", "./"]
-RUN dotnet restore "AgendamentoPlanetario.csproj"
+COPY ["AgendamentoPlanetario/AgendamentoPlanetario.csproj", "AgendamentoPlanetario/"]
+RUN dotnet restore "AgendamentoPlanetario/AgendamentoPlanetario.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/AgendamentoPlanetario"
 RUN dotnet build "AgendamentoPlanetario.csproj" -c Release -o /app/build
 
 FROM build AS publish
