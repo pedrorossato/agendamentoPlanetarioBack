@@ -28,7 +28,7 @@ namespace AgendamentoPlanetario
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<AppDbContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("Host=ec2-18-214-208-89.compute-1.amazonaws.com;Database=d3vth0mgs7tf8j;Username=ynfctnpptohsjq;Password=5174f2a2d9a3c8cd34a6d62ee8c64e31088b2b562c60d39ee63615749cda0925")));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=ec2-18-214-208-89.compute-1.amazonaws.com;Database=d3vth0mgs7tf8j;Username=ynfctnpptohsjq;Password=5174f2a2d9a3c8cd34a6d62ee8c64e31088b2b562c60d39ee63615749cda0925;sslmode=Require;Trust Server Certificate=true"));
             services.AddScoped<AppDbContext, AppDbContext>();
             services.AddControllers();
         }
