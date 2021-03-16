@@ -31,7 +31,6 @@ namespace AgendamentoPlanetario.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -88,10 +87,15 @@ namespace AgendamentoPlanetario.Controllers
         [HttpPost]
         public async Task<ActionResult<Agendamento>> PostAgendamento(Agendamento agendamento)
         {
+            var agendamentoAlreadyExists = _context.Agendamentos.FirstOrDefault(a => a.DataHoraSessao == agendamento.DataHoraSessao);
+            
+            if (agendamentoAlreadyExists != null)
+                throw new Exception("Já existe um agendamento no mesmo horário");
+
             _context.Agendamentos.Add(agendamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAgendamento", new { id = agendamento.Id }, agendamento);
+            return RedirectToAction("GetEmailByAgendamento", "Emails" ,new { idAgendamento = agendamento.Id });
         }
 
         // DELETE: Agendamentos/5

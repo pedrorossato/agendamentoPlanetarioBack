@@ -5,7 +5,7 @@ services:
   agendamentoplanetario:
     build:
       context: C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack
-      dockerfile: AgendamentoPlanetario\Dockerfile
+      dockerfile: AgendamentoPlanetario\Dockerfile.dev
     depends_on:
       postgresdb:
         condition: service_started
@@ -17,9 +17,11 @@ services:
     networks:
       dockerplanetariodev: {}
     ports:
-    - published: 8000
+    - published: 5000
       target: 80
     - target: 80
+    - published: 5001
+      target: 443
     - target: 443
     volumes:
     - C:\Users\phvro\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro

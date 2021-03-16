@@ -1,8 +1,8 @@
-version: '3.4'
+version: "3.4"
 
 networks:
   dockerplanetariodev:
-    driver: bridge 
+    driver: bridge
 
 services:
   agendamentoplanetario:
@@ -11,22 +11,23 @@ services:
       - "postgresdb"
     build:
       context: .
-      dockerfile: AgendamentoPlanetario\Dockerfile
+      dockerfile: AgendamentoPlanetario\Dockerfile.dev
     ports:
-        - "8000:80"
+      - "5000:80"
+      - "5001:443"
     environment:
-        DefaultConnection : "Server=postgresdb;port=5432;user id=postgres;password=gremio10;database=planetario;Timeout=120;CommandTimeout=480;"
+      DefaultConnection: "Server=postgresdb;port=5432;user id=postgres;password=gremio10;database=planetario;Timeout=120;CommandTimeout=480;"
     networks:
-        - dockerplanetariodev
+      - dockerplanetariodev
 
   postgresdb:
     image: postgres:latest
     ports:
-        - "5432:5432"
+      - "5432:5432"
     restart: always
     environment:
-        POSTGRES_USER: "postgres"
-        POSTGRES_PASSWORD: "gremio10"
-        POSTGRES_DB: "planetario"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "gremio10"
+      POSTGRES_DB: "planetario"
     networks:
-        - dockerplanetariodev
+      - dockerplanetariodev

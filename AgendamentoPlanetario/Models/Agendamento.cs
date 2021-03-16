@@ -24,11 +24,8 @@ namespace AgendamentoPlanetario.Models
         [Column("sessaoescolhida")]
         public string SessaoEscolhida { get; set; }
         
-        [Column("datasessao")]
-        public string DataSessao { get; set; }
-        
-        [Column("horasessao")]
-        public string HoraSessao { get; set; }
+        [Column("datahorasessao")]
+        public DateTime DataHoraSessao { get; set; }
         
         [Column("instituicao")]
         public string Instituicao { get; set; }

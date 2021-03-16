@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using System;
 
 namespace AgendamentoPlanetario.Migrations
 {
@@ -17,8 +18,7 @@ namespace AgendamentoPlanetario.Migrations
                     email = table.Column<string>(type: "text", nullable: false),
                     telefone = table.Column<string>(type: "text", nullable: false),
                     sessaoescolhida = table.Column<string>(type: "text", nullable: false),
-                    datasessao = table.Column<string>(type: "text", nullable: false),
-                    horasessao = table.Column<string>(type: "text", nullable: false),
+                    datahorasessao = table.Column<DateTime>(type: "timestamp", nullable: false),
                     instituicao = table.Column<string>(type: "text", nullable: false),
                     municipio = table.Column<string>(type: "text", nullable: false),
                     serie = table.Column<int>(type: "integer", nullable: false),
