@@ -18,6 +18,7 @@ namespace AgendamentoPlanetario.Services
         {
             var email = Environment.GetEnvironmentVariable("Email");
             var senha = Environment.GetEnvironmentVariable("Senha");
+            Console.WriteLine(email,senha);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"Agendamento da escola: {agendamento.Instituicao}");
             stringBuilder.AppendLine($"Sessão escolhida: {agendamento.SessaoEscolhida}");
