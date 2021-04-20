@@ -39,8 +39,8 @@ namespace AgendamentoPlanetario
                     builder =>
                     {
                         builder
-                            // .WithOrigins("http://localhost:3000")
-                            .AllowAnyOrigin()
+                             .WithOrigins("http://localhost:3000", "https://planetarioufsm.netlify.app/")
+                            //.AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
                     });

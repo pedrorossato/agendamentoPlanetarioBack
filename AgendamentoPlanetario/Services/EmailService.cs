@@ -4,11 +4,6 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using AgendamentoPlanetario.Models;
-using FluentEmail.Core;
-using FluentEmail.Core.Models;
-using FluentEmail.Mailgun;
-using FluentEmail.SendGrid;
-using FluentEmail.Smtp;
 
 namespace AgendamentoPlanetario.Services
 {
@@ -18,8 +13,6 @@ namespace AgendamentoPlanetario.Services
         {
             var email = Environment.GetEnvironmentVariable("Email");
             var senha = Environment.GetEnvironmentVariable("Senha");
-            Console.WriteLine("Email:"+email);
-            Console.WriteLine("Senha:" + senha);
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"Agendamento da escola: {agendamento.Instituicao}");
@@ -47,7 +40,7 @@ namespace AgendamentoPlanetario.Services
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(email, senha)
             };
-            Console.WriteLine(smtp);
+
             using var emailPlanetario = new MailMessage(email, email)
             {
                 Subject = $"Novo agendamento para a escola {agendamento.Instituicao}!",

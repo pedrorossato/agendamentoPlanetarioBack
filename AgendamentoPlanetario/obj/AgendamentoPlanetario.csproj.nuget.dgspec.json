@@ -40,18 +40,6 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "FluentEmail.Mailgun": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "FluentEmail.SendGrid": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "FluentEmail.Smtp": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.3, )"
