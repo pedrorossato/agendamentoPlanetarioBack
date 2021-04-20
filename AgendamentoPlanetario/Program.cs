@@ -1,4 +1,4 @@
-using AgendamentoPlanetario.Data;
+using AgendamentoPlanetario.Database;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

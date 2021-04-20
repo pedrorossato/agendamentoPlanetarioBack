@@ -1,4 +1,4 @@
-using AgendamentoPlanetario.Data;
+using AgendamentoPlanetario.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AgendamentoPlanetario.Services;
 
 namespace AgendamentoPlanetario
 {
@@ -21,8 +22,10 @@ namespace AgendamentoPlanetario
         {
             Configuration = configuration;
         }
-
+    
         public IConfiguration Configuration { get; }
+        
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,6 +33,18 @@ namespace AgendamentoPlanetario
             //services.AddDbContext<AppDbContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("PostgresConnection")));
             services.AddScoped<AppDbContext, AppDbContext>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder
+                            // .WithOrigins("http://localhost:3000")
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             services.AddControllers();
         }
 
@@ -44,6 +59,8 @@ namespace AgendamentoPlanetario
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
@@ -51,6 +68,7 @@ namespace AgendamentoPlanetario
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

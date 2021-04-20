@@ -171,3 +171,8 @@ C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\
 C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\obj\Debug\netcoreapp3.1\AgendamentoPlanetario.dll
 C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\obj\Debug\netcoreapp3.1\AgendamentoPlanetario.pdb
 C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\obj\Debug\netcoreapp3.1\AgendamentoPlanetario.genruntimeconfig.cache
+C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\bin\Debug\netcoreapp3.1\FluentEmail.Core.dll
+C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\bin\Debug\netcoreapp3.1\FluentEmail.Smtp.dll
+C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\bin\Debug\netcoreapp3.1\FluentEmail.Mailgun.dll
+C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\bin\Debug\netcoreapp3.1\FluentEmail.SendGrid.dll
+C:\Users\phvro\Documents\GitHub\AgendamentoPlanetario\agendamentoPlanetarioBack\AgendamentoPlanetario\bin\Debug\netcoreapp3.1\SendGrid.dll

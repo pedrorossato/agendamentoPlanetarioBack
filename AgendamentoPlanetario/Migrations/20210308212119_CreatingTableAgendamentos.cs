@@ -21,7 +21,7 @@ namespace AgendamentoPlanetario.Migrations
                     datahorasessao = table.Column<DateTime>(type: "timestamp", nullable: false),
                     instituicao = table.Column<string>(type: "text", nullable: false),
                     municipio = table.Column<string>(type: "text", nullable: false),
-                    serie = table.Column<int>(type: "integer", nullable: false),
+                    serie = table.Column<string>(type: "text", nullable: false),
                     alunos = table.Column<int>(type: "integer", nullable: false),
                     professor = table.Column<string>(type: "text", nullable: false),
                     emailprofessor = table.Column<string>(type: "text", nullable: false),

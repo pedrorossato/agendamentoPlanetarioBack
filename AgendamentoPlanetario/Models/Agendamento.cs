@@ -34,7 +34,7 @@ namespace AgendamentoPlanetario.Models
         public string Municipio { get; set; }
         
         [Column("serie")]
-        public int Serie { get; set; }
+        public string Serie { get; set; }
         
         [Column("alunos")]
         public int Alunos { get; set; }

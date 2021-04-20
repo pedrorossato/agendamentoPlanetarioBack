@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AgendamentoPlanetario.Data;
+using AgendamentoPlanetario.Database;
 using AgendamentoPlanetario.Models;
+using AgendamentoPlanetario.Services;
 
 namespace AgendamentoPlanetario.Controllers
 {
@@ -15,7 +16,6 @@ namespace AgendamentoPlanetario.Controllers
     public class AgendamentosController : ControllerBase
     {
         private readonly AppDbContext _context;
-
         public AgendamentosController(AppDbContext context)
         {
             _context = context;
@@ -87,15 +87,22 @@ namespace AgendamentoPlanetario.Controllers
         [HttpPost]
         public async Task<ActionResult<Agendamento>> PostAgendamento(Agendamento agendamento)
         {
-            var agendamentoAlreadyExists = _context.Agendamentos.FirstOrDefault(a => a.DataHoraSessao == agendamento.DataHoraSessao);
-            
-            if (agendamentoAlreadyExists != null)
-                throw new Exception("Já existe um agendamento no mesmo horário");
+            var agendamentoThatAlreadyExists = _context.Agendamentos.FirstOrDefault(a => a.DataHoraSessao == agendamento.DataHoraSessao);
 
-            _context.Agendamentos.Add(agendamento);
-            await _context.SaveChangesAsync();
+            if (agendamentoThatAlreadyExists != null)
+                return Conflict("Já existe um agendamento no mesmo horário.");
 
-            return RedirectToAction("GetEmailByAgendamento", "Emails" ,new { idAgendamento = agendamento.Id });
+            try
+            {
+                _context.Agendamentos.Add(agendamento);
+                await EmailService.SendEmail(agendamento);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetAgendamento), new {id = agendamento.Id}, agendamento);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500,ex.Message);
+            }
         }
 
         // DELETE: Agendamentos/5
