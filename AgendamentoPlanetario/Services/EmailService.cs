@@ -18,7 +18,9 @@ namespace AgendamentoPlanetario.Services
         {
             var email = Environment.GetEnvironmentVariable("Email");
             var senha = Environment.GetEnvironmentVariable("Senha");
-            Console.WriteLine(email,senha);
+            Console.WriteLine("Email:"+email);
+            Console.WriteLine("Senha:" + senha);
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"Agendamento da escola: {agendamento.Instituicao}");
             stringBuilder.AppendLine($"Sessão escolhida: {agendamento.SessaoEscolhida}");
@@ -45,7 +47,7 @@ namespace AgendamentoPlanetario.Services
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(email, senha)
             };
-
+            Console.WriteLine(smtp);
             using var emailPlanetario = new MailMessage(email, email)
             {
                 Subject = $"Novo agendamento para a escola {agendamento.Instituicao}!",
