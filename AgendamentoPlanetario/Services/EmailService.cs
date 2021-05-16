@@ -15,21 +15,21 @@ namespace AgendamentoPlanetario.Services
             var senha = Environment.GetEnvironmentVariable("Senha");
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine($"Agendamento da escola: {agendamento.Instituicao}");
-            stringBuilder.AppendLine($"Sessão escolhida: {agendamento.SessaoEscolhida}");
-            stringBuilder.AppendLine($"Horário escolhido: {agendamento.DataHoraSessao}");
-            stringBuilder.AppendLine($"Série/Ano: {agendamento.Serie}");
-            stringBuilder.AppendLine($"Quantidade de alunos: {agendamento.Alunos}");
-            stringBuilder.AppendLine($"Algumo aluno com deficiência? {agendamento.AlunoDeficiente}");
-            stringBuilder.AppendLine($"Nome do professor responsável: {agendamento.Professor}");
-            stringBuilder.AppendLine($"Telefone do professor responsável: {agendamento.TelefoneProfessor}");
-            stringBuilder.AppendLine($"Email do professor responsável: {agendamento.EmailProfessor}");
-            stringBuilder.AppendLine($"Tipo de escola: {agendamento.TipoEscola}");
-            stringBuilder.AppendLine($"Telefone da escola: {agendamento.TelefoneEscola}");
-            stringBuilder.AppendLine($"Município da escola: {agendamento.Municipio}");
-            stringBuilder.AppendLine($"Nome de quem agendou: {agendamento.Nome}");
-            stringBuilder.AppendLine($"Email de quem agendou: {agendamento.Email}");
-            stringBuilder.AppendLine($"Telefone de quem agendou: {agendamento.Telefone}");
+            stringBuilder.AppendLine($"Agendamento da escola: <b>{agendamento.Instituicao}</b><br/>");
+            stringBuilder.AppendLine($"Sessão escolhida: <b>{agendamento.SessaoEscolhida}</b><br/>");
+            stringBuilder.AppendLine($"Horário escolhido: <b>{agendamento.DataHoraSessao}</b><br/>");
+            stringBuilder.AppendLine($"Série/Ano: <b>{agendamento.Serie}</b><br/>");
+            stringBuilder.AppendLine($"Quantidade de alunos: <b>{agendamento.Alunos}</b><br/>");
+            stringBuilder.AppendLine($"Algumo aluno com deficiência? <b>{agendamento.AlunoDeficiente}</b><br/>");
+            stringBuilder.AppendLine($"Nome do professor responsável: <b>{agendamento.Professor}</b><br/>");
+            stringBuilder.AppendLine($"Telefone do professor responsável: <b>{agendamento.TelefoneProfessor}</b><br/>");
+            stringBuilder.AppendLine($"Email do professor responsável: <b>{agendamento.EmailProfessor}</b><br/>");
+            stringBuilder.AppendLine($"Tipo de escola: <b>{agendamento.TipoEscola}</b><br/>");
+            stringBuilder.AppendLine($"Telefone da escola: <b>{agendamento.TelefoneEscola}</b><br/>");
+            stringBuilder.AppendLine($"Município da escola: <b>{agendamento.Municipio}</b><br/>");
+            stringBuilder.AppendLine($"Nome de quem agendou: <b>{agendamento.Nome}</b><br/>");
+            stringBuilder.AppendLine($"Email de quem agendou: <b>{agendamento.Email}</b><br/>");
+            stringBuilder.AppendLine($"Telefone de quem agendou: <b>{agendamento.Telefone}</b><br/>");
 
             var smtp = new SmtpClient
             {
@@ -44,21 +44,31 @@ namespace AgendamentoPlanetario.Services
             using var emailPlanetario = new MailMessage(email, email)
             {
                 Subject = $"Novo agendamento para a escola {agendamento.Instituicao}!",
-                Body = stringBuilder.ToString()
+                Body = stringBuilder.ToString(),
+                IsBodyHtml= true
             };
 
             await smtp.SendMailAsync(emailPlanetario);
 
             stringBuilder.Clear();
-            stringBuilder.AppendLine($"Seu agendamento foi realizado com sucesso!");
-            stringBuilder.AppendLine($"Você escolheu a sessão {agendamento.SessaoEscolhida}.");
-            stringBuilder.AppendLine($"O horário escolhido foi {agendamento.DataHoraSessao}.");
-            stringBuilder.AppendLine($"O link para o encontro virtual irá ser enviado em breve...");
+            stringBuilder.AppendLine("Olá!<br/>");
+            stringBuilder.AppendLine("Recebemos seu agendamento de sessão virtual." +
+                " Encaminharemos a você o link para acesso à sessão, através deste e-mail, quando o dia escolhido estiver próximo.<br/>");
+            stringBuilder.AppendLine("<br/>");
+            stringBuilder.AppendLine("Confira alguns dados de seu agendamento:<br/>");
+            stringBuilder.AppendLine($"<i>Você escolheu a sessão <b>{agendamento.SessaoEscolhida}</b>.</i><br/>");
+            stringBuilder.AppendLine($"<i>A data e horário escolhido foram <b>{agendamento.DataHoraSessao}</b>.</i><br/>");
+            stringBuilder.AppendLine("<br/>");
+            stringBuilder.AppendLine("Enquanto o dia da sessão não chega, você pode acompanhar nosso trabalho clicando nos links das redes sociais abaixo:<br/>");
+            stringBuilder.AppendLine($"<a style={"font-size:15px"} href={"https://www.instagram.com/planetarioufsm/"}>Instagram</a><br/>" +
+                $"<a style={"font-size:15px"} href={"https://www.facebook.com/planetarioufsm1/"}>Facebook</a><br/>" +
+                $"<a style={"font-size:15px"} href={"https://www.youtube.com/channel/UC91vcCsL5Ja_WtQfcDC997A"}>Youtube</a>");
 
             using var emailEscola = new MailMessage(email, agendamento.Email)
             {
-                Subject = $"Agendamento de sessão virtual realizado com sucesso!",
-                Body = stringBuilder.ToString()
+                Subject = $"Seu agendamento foi realizado com sucesso!",
+                Body = stringBuilder.ToString(),
+                IsBodyHtml = true
             };
 
             await smtp.SendMailAsync(emailEscola);
